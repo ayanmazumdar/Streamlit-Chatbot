@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: titanic-chat-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: openai/gpt-oss-120b
+
+  - type: web
+    name: titanic-chat-ui
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run streamlit_app.py --server.headless true --server.address 0.0.0.0 --server.port $PORT
+    envVars:
+      - key: API_BASE_URL
+        value: http://localhost:8000
