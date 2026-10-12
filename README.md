@@ -47,6 +47,13 @@ Render dashboard, then redeploy the UI. The free services sleep after 15
 minutes without traffic, so the first request after idle can take about a
 minute to start.
 
+### Live deployment
+
+- Streamlit app: <https://titanic-chat-ui.onrender.com>
+- API health: <https://titanic-chat-api.onrender.com/health>
+
+Both URLs returned HTTP 200 during the deployment handoff check on 2026-10-12.
+
 ## Dataset source
 
 The application vendors the Seaborn teaching dataset from
